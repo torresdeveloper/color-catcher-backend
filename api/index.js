@@ -8,13 +8,13 @@ app.use(cors()); // gio afonso
 
 app.use(express.json());
 
-app.get("/" , async(req, res) => {
+app.get("/api" , async(req, res) => {
     res.json({
         status: "ok"
     });
 });
 
-app.post('/scrape', async (req, res) => {
+app.post('/api/scrape', async (req, res) => {
     const siteURL = req.body.url;
 
     try {
