@@ -4,7 +4,8 @@
   "description": "",
   "main": "scrape.js",
   "scripts": {
-    "start": "node scrape.js"
+    "start": "node scrape.js",
+    "build": "echo nada"
   },
   "keywords": [],
   "author": "",
