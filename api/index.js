@@ -1,10 +1,11 @@
 const express = require('express');
-const puppeteer = require('puppeteer');
-const cors = require('cors'); // Importe o módulo cors
+//const puppeteer = require('puppeteer');
+const cors = require('cors'); 
+const chromium = require('chrome-aws-lambda');
 
 const app = express();
 
-app.use(cors()); // gio afonso
+app.use(cors()); 
 
 app.use(express.json());
 
@@ -18,7 +19,15 @@ app.post('/api/scrape', async (req, res) => {
     const siteURL = req.body.url;
 
     try {
-        const browser = await puppeteer.launch();
+        //const browser = await puppeteer.launch();
+        const browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            //headless: chromium.headless,
+            headless: true,
+            ignoreHTTPSErrors: true,
+          });
         const page = await browser.newPage();
 
         await page.goto(siteURL);
@@ -52,10 +61,8 @@ app.post('/api/scrape', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+
 
 module.exports = app;
 
-//app.listen(PORT, () => {
-//    console.log(`Server is running on port ${PORT}`);
-//});
+
