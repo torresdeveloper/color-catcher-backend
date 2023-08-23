@@ -1,7 +1,7 @@
 const express = require('express');
-//const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer');
 const cors = require('cors'); 
-const chromium = require('chrome-aws-lambda');
+
 
 const app = express();
 
@@ -19,15 +19,15 @@ app.post('/api/scrape', async (req, res) => {
     const siteURL = req.body.url;
 
     try {
-        //const browser = await puppeteer.launch();
-        const browser = await chromium.puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath,
-            //headless: chromium.headless,
-            headless: true,
-            ignoreHTTPSErrors: true,
-          });
+        const browser = await puppeteer.launch();
+        // const browser = await chromium.puppeteer.launch({
+        //     args: chromium.args,
+        //     defaultViewport: chromium.defaultViewport,
+        //     executablePath: await chromium.executablePath,
+        //     //headless: chromium.headless,
+        //     headless: true,
+        //     ignoreHTTPSErrors: true,
+        //   });
         const page = await browser.newPage();
 
         await page.goto(siteURL);
