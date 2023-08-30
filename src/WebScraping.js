@@ -11,14 +11,6 @@ class WebScraping {
         headless: "new",
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
-      // this._browser = await chromium.puppeteer.launch({
-      //     args: chromium.args,
-      //     defaultViewport: chromium.defaultViewport,
-      //     executablePath: await chromium.executablePath,
-      //     //headless: chromium.headless,
-      //     headless: true,
-      //     ignoreHTTPSErrors: true,
-      //   });
     }
     return this._browser;
   }
